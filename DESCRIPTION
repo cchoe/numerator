@@ -1,0 +1,13 @@
+Package: infoscout
+Title: R Functions commonly used for Data Scientists at InfoScout
+Version: 0.0.0.0001
+Authors@R: person('Charles','Choe', email = 'charles@infoscoutinc.com', role = c("aut", "cre"))
+Description: Provides R functions for data science needs
+Depends: R (>= 3.5.1)
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+Imports:
+	RJDBC,
+	survey
+RoxygenNote: 6.1.0
