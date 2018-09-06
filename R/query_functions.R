@@ -7,12 +7,12 @@
 #' @return A dataframe containing users and other details
 #' @examples vertica <- vertica_connect(driver.path)
 #' @examples # single static
-#' @examples df <- get_bm_static(vertica, static_end_date='2017-12-31') 
+#' @examples df <- get_bm_static(vertica, static_end_date="'2017-12-31'") 
 #' @examples # for multiple statics
 #' @examples df <- get_bm_static(vertica, static_end_date=c("'2017-12-31', '2016-12-31'") 
 #' @export
-get_bm_static <- function(conn, static_end_date='2017-12-31'){
-    sql <- paste("SELECT * FROM df.panelist_selection WHERE static_end_date IN(", static_end_date,"');", sep='')
+get_bm_static <- function(conn, static_end_date="'2017-12-31'"){
+    sql <- paste("SELECT * FROM df.panelist_selection WHERE static_end_date IN(", static_end_date, ");", sep='')
     out <- RJDBC::dbGetQuery(conn, sql)
     return(out)
 }
