@@ -5,8 +5,16 @@
 \title{Connect to Snowflake}
 \usage{
 snowflake_connect(driver.path, user, pw)
+
+snowflake_connect(driver.path, user, pw)
 }
 \arguments{
+\item{driver.path}{Local path to the Snowflake JDBC driver (.jar)}
+
+\item{user}{Database username}
+
+\item{pw}{Database password}
+
 \item{driver.path}{Local path to the Snowflake JDBC driver (.jar)}
 
 \item{user}{Database username}
@@ -15,11 +23,18 @@ snowflake_connect(driver.path, user, pw)
 }
 \value{
 A Snowflake connection object
+
+A Snowflake connection object
 }
 \description{
 This function creates a Snowflake JDBC connection object for querying InfoScout tables directly from R.
+
+This function creates a Snowflake JDBC connection object for querying InfoScout tables directly from R.
 }
 \examples{
+driver.path = '/users/me/documents/drivers/snowflake-jdbc-3.6.6.jar'
+snowflake <- snowflake_connect(driver.path)
+df <- dbGetQuery(snowflake, 'SELECT * FROM us_tlog.d_user LIMIT 10;')
 driver.path = '/users/me/documents/drivers/snowflake-jdbc-3.6.6.jar'
 snowflake <- snowflake_connect(driver.path)
 df <- dbGetQuery(snowflake, 'SELECT * FROM us_tlog.d_user LIMIT 10;')

@@ -10,5 +10,6 @@ LazyData: true
 Imports:
 	RJDBC,
 	survey,
-	outliers
+	outliers,
+	RMySQL
 RoxygenNote: 6.1.0
