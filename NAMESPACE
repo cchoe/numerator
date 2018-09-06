@@ -2,6 +2,7 @@
 
 export("%ni%")
 export(calc_bins)
+export(calc_efficiency)
 export(calc_moe)
 export(calc_outliers)
 export(calc_props)

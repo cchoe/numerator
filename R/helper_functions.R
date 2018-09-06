@@ -250,6 +250,36 @@ calc_weights <- function(df, y, min.cap=-Inf, max.cap=Inf) {
 }
 
 
+#' Calculate weighting efficiency for a given set of weights
+#'
+#' This function calculates weighting efficiency, which is an indication of the amount of skewing that had to be done to get the weights to converge
+#' @param x A vector of weights
+#' @param base Base weights (default = 1)
+#' @return The weighting efficiency score
+#' @examples calc_efficiency(weights)
+#' @export
+calc_efficiency <- function(x, base = 1) {
+    # x = weights
+    # base = 1
+    Pj <- rep(base, length(x))
+    Rj <- x
+    PjRj <- Pj*Rj
+    PjRj.sq <- PjRj^2
+    
+    Pj.Sigm <- sum(Pj)
+    Rj.Sigm <- sum(Rj)
+    PjRj.Sigm <- sum(PjRj)
+    PjRj.sq.Sigm <- sum(PjRj.sq)
+    
+    weight.index <- (PjRj.Sigm * Pj.Sigm) / Rj.Sigm
+    weight.index.sq <- PjRj.sq.Sigm * ((Pj.Sigm / Rj.Sigm)^2)
+    
+    out <- 100 * (weight.index^2) / (weight.index.sq * Pj.Sigm)
+    
+    return(out)
+}
+
+
 #' Recode raw demographics (used for weighting) 
 #'
 #' This function recodes demographics to those labels used in demogrpahic weighting.
@@ -309,3 +339,4 @@ recode_demos <- function(df) {
     
     return(df)
 }
+
