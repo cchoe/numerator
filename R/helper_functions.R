@@ -79,23 +79,18 @@ calc_props <- function(df, exclude.cols) {
 #' Calculate outliers
 #'
 #' This function calculates outliers for any given metric
-#' @param df A dataframe containing metric values
-#' @param metric The column name of the metric of interest
-#' @return A list object containing the input df with outliers removed, and the outlier values
-#' @examples calc_outliers(df, 'spend')
+#' @param x A vector containing values
+#' @return A scalar value of the outlier
+#' @examples x <- c(1000, seq(1,100, 1)) 
+#' @examples calc_outlier(x) # returns 1000
 #' @export
-calc_outliers <- function(df, metric){
+calc_outlier <- function(x){
     
-    third.q <- quantile(df[[metric]], 0.75)
-    outlier.iqr <- third.q + (1.5 * IQR(df[[metric]]))
+    third.q <- quantile(x, 0.75)
+    outlier.iqr <- third.q + (1.5 * IQR(x))
+    outlier <- min(outliers::outlier(x),  outlier.iqr[[1]] )
     
-    outlier <- min(outlier(df[[metric]]),  outlier.iqr[[1]] )
-    
-    df <- df[df[metric] < outlier, ]
-    out <- list()
-    out$df <- df
-    out$outlier <- outlier
-    return(out)
+    return(outlier)
 }
 
 
