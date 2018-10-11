@@ -10,7 +10,7 @@
 #' @examples vertica <- vertica_connect(driver.path)
 #' @examples df <- dbGetQuery(vertica, 'SELECT * FROM us_tlog.d_user LIMIT 10;')
 #' @export
-vertica_connect <- function(driver.path, user, pw) {
+vertica_connect <- function(driver.path=Sys.getenv("VERTICA_DRIVER_PATH"), user=Sys.getenv("VERTICA_USER"), pw=Sys.getenv("VERTICA_PW")) {
     # Creates a connection object to use when querying vertica
     #
     # Returns:
@@ -33,7 +33,7 @@ vertica_connect <- function(driver.path, user, pw) {
 #' @examples snowflake <- snowflake_connect(driver.path)
 #' @examples df <- dbGetQuery(snowflake, 'SELECT * FROM us_tlog.d_user LIMIT 10;')
 #' @export
-snowflake_connect <- function(driver.path, user, pw) {
+snowflake_connect <- function(driver.path=Sys.getenv("SNOWFLAKE_DRIVER_PATH"), user=Sys.getenv("SNOWFLAKE_USER"), pw=Sys.getenv("SNOWFLAKE_PW")) {
     # Creates a connection object to use when querying vertica
     #
     # Returns:
