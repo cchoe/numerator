@@ -14,5 +14,4 @@ Imports:
 	RMySQL,
 	MASS,
 	e1071
-
 RoxygenNote: 6.1.0
