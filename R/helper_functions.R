@@ -84,13 +84,46 @@ calc_props <- function(df, exclude.cols) {
 #' @examples x <- c(1000, seq(1,100, 1)) 
 #' @examples calc_outlier(x) # returns 1000
 #' @export
-calc_outlier <- function(x){
+calc_outlier <- function(x)
+{
+    x[is.na(x)] <- 0
+    x <- abs(x)
     
-    third.q <- quantile(x, 0.75)
-    outlier.iqr <- third.q + (1.5 * IQR(x))
-    outlier <- min(outliers::outlier(x),  outlier.iqr[[1]] )
+    # try boxcox
+    lambdas <- seq(-6, 6, 0.005)
+    Box = MASS::boxcox(x+1~1, lambda = lambdas)
+    Cox <- data.frame(Box$x, Box$y)
+    Cox <- Cox[with(Cox, order(-Cox$Box.y)), ]
+    lambda = Cox[1, "Box.x"]
     
-    return(outlier)
+    # try various methods
+    transformed <- data.frame(bc.t =  (x ^ lambda - 1) / lambda, 
+                              sqrt.t = sqrt(x),
+                              cubert.t = x^(1/3),
+                              log.t = log(x+1),
+                              anscombe.t = 2 * sqrt(x + (3/8)),
+                              default.t = x)
+    # find skew                        
+    skew <- data.frame (bc.t = abs(e1071::skewness(transformed$bc.t)),
+                        cubert.t = abs(e1071::skewness(transformed$cubert.t)),
+                        sqrt.t = abs(e1071::skewness(transformed$sqrt.t)),
+                        log.t = abs(e1071::skewness(transformed$log.t)),
+                        anscombe.t = abs(e1071::skewness(transformed$anscombe.t)),
+                        default.t = abs(e1071::skewness(transformed$default.t))
+    )
+                        
+    use.metric <- transformed[[names(which.min(skew))]]
+    
+    q75 <- summary(use.metric)[5][[1]]
+    iqr1.5 <- IQR(use.metric) * 1.5
+    outlier <- q75 + iqr1.5
+    
+    z <- data.frame(metric = x,
+                    transformed = use.metric)
+    
+    z$outlier <- ifelse(z$transformed > outlier, 1, 0)
+    
+    return(z$outlier)
 }
 
 
