@@ -113,7 +113,7 @@ calc_bins <- function(df, metric, bin.threshold=4, min.bins=3, max.bins=8, bin.c
     
     outlier <- calc_outlier(df[[metric]])
 
-    df.e <- df[df[metric] < outlier,]
+    df.e<-df
     
     cat.tf.bins <- hist(df.e[[metric]], max.bins, plot = FALSE)$breaks
     
