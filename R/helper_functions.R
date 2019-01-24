@@ -109,9 +109,9 @@ calc_outlier <- function(x){
 calc_bins <- function(df, metric, bin.threshold=4, min.bins=3, max.bins=8, bin.cutoff=0.055){
     bin.name <- paste0(metric,'_bin')
     
-    df[is.na(df[[metric]]), metric] <- 0
+    df[is.na(df)] <- 0
     
-    df.re <- calc_outlier(df[metric])
+    df.re <- calc_outlier(df[[metric]])
     outlier <- df.re$outlier
     df.e <- df.re$df
     
