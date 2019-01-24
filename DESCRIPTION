@@ -11,5 +11,8 @@ Imports:
 	RJDBC,
 	survey,
 	outliers,
-	RMySQL
+	RMySQL,
+	MASS,
+	e1071
+
 RoxygenNote: 6.1.0
