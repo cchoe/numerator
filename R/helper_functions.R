@@ -1,6 +1,6 @@
 #' Operator NOT IN
 #'
-#' This function is the opposite of %in%
+#' This operator is the opposite of `%in%`
 #'
 #' @examples 1 %ni% 1  FALSE
 #' @examples 1 %ni% 2  TRUE
