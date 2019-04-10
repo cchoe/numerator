@@ -126,16 +126,23 @@ calc_props <- function(df, exclude.cols) {
 #' @examples x <- c(1000, seq(1,100, 1)) 
 #' @examples calc_outlier(x) # returns 1000
 #' @export
-calc_outlier <- function(x)
+calc_outlier <- function(x, both=FALSE)
 {
     use.metric <- std_transform(x)  
     q75 <- summary(use.metric)[5][[1]]
+    q25 <- summary(use.metric)[2][[1]]
     iqr1.5 <- IQR(use.metric) * 1.5
-    outlier <- q75 + iqr1.5
+    upper.outlier <- q75 + iqr1.5
+    lower.outlier <- q25 - iqr1.5
+    
     z <- data.frame(metric = x,
                     transformed = use.metric)
     
-    z$outlier <- ifelse(z$transformed > outlier, 1, 0)
+    z$outlier <- ifelse(z$transformed >= upper.outlier, 1, 0)
+    
+    if(both) {
+        z$outlier <- ifelse(z$transformed >= upper.outlier | z$transformed <= lower.outlier, 1, 0)
+    }
     
     return(z$outlier)
 }
