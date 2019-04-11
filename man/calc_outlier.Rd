@@ -4,7 +4,7 @@
 \alias{calc_outlier}
 \title{Calculate outliers}
 \usage{
-calc_outlier(x)
+calc_outlier(x, both = FALSE)
 }
 \arguments{
 \item{x}{A vector containing values}

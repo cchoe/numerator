@@ -4,7 +4,7 @@
 \alias{get_bm_static}
 \title{Pull a B&M static}
 \usage{
-get_bm_static(conn, static_end_date = "2017-12-31")
+get_bm_static(conn, static_end_date = "'2017-12-31'")
 }
 \arguments{
 \item{conn}{A database connection object}
@@ -20,7 +20,7 @@ This function returns a list of users for any given 12-month B&M static
 \examples{
 vertica <- vertica_connect(driver.path)
 # single static
-df <- get_bm_static(vertica, static_end_date='2017-12-31') 
+df <- get_bm_static(vertica, static_end_date="'2017-12-31'") 
 # for multiple statics
 df <- get_bm_static(vertica, static_end_date=c("'2017-12-31', '2016-12-31'") 
 }

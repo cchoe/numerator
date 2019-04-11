@@ -7,7 +7,7 @@
 ... \%ni\% NA
 }
 \description{
-This function is the opposite of %in%
+This operator is the opposite of the 'in' operator
 }
 \examples{
 1 \%ni\% 1  FALSE
