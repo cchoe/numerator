@@ -1,6 +1,6 @@
 Package: numerator
 Title: R Functions commonly used for Data Scientists at Numerator
-Version: 0.0.0.0002
+Version: 0.0.0.0003
 Authors@R: person('Charles','Choe', email = 'charles@numerator.com', role = c("aut", "cre"))
 Description: Provides R functions for data science needs
 Depends: R (>= 3.5.1)
