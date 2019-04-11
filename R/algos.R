@@ -40,4 +40,3 @@ kmeans_optimal_elbow <- function(x, y, k.max=6) {
 
   return(clusters)
 }
-
