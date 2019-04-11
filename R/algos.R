@@ -4,16 +4,17 @@
 #'
 #' @param x x coordinate
 #' @param y y coordinate
+#' @param k.max max k clusters that can be generated
 #' @return kmeans cluster object, containing means, clustering vector, etc.
 #' @examples kmeans_optimal_elbow(x_coord, y_coord)
 #' @export
-kmeans_optimal_elbow <- function(x, y) {
+kmeans_optimal_elbow <- function(x, y, k.max=6) {
   df1 = as.matrix(cbind(x, y))
   n_clusters = nrow(unique(df1))
   if (n_clusters > 1) {
     if (nrow(unique(df1)) < 5) {
       a1 = fviz_nbclust(df1, kmeans,
-                        k.max = min(nrow(unique(df1))-1, 10),
+                        k.max = k.max,
                         method = "wss",
                         print.summary = T,
                         verbose = T)
@@ -28,7 +29,7 @@ kmeans_optimal_elbow <- function(x, y) {
                    diss = NULL,
                    distance = "euclidean",
                    min.nc = 2,
-                   max.nc = min(nrow(unique(df1))-1, 10),
+                   max.nc = k.max,
                    method = "kmeans",
                    alphaBeale = 0)
       n_clusters = max(unlist(nb[4]))
