@@ -14,5 +14,6 @@ Imports:
 	RMySQL,
 	MASS,
 	e1071,
-	NbClust
+	NbClust,
+	factoextra
 RoxygenNote: 6.1.0
