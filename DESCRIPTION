@@ -13,5 +13,6 @@ Imports:
 	outliers,
 	RMySQL,
 	MASS,
-	e1071
+	e1071,
+	NbClust
 RoxygenNote: 6.1.0
