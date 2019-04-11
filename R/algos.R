@@ -4,7 +4,7 @@
 #'
 #' @param x x coordinate
 #' @param y y coordinate
-#' @param k.max max k clusters that can be generated
+#' @param k.max max k clusters that can be generated (Default=6).
 #' @return kmeans cluster object, containing means, clustering vector, etc.
 #' @examples kmeans_optimal_elbow(x_coord, y_coord)
 #' @export
