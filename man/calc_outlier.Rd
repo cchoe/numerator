@@ -16,6 +16,6 @@ A scalar value of the outlier
 This function calculates outliers for any given metric
 }
 \examples{
-x <- c(1000, seq(1,100, 1)) 
+x <- c(1000, seq(1,100, 1))
 calc_outlier(x) # returns 1000
 }

@@ -22,6 +22,6 @@ This function creates a Snowflake JDBC connection object for querying InfoScout 
 }
 \examples{
 driver.path = '/users/me/documents/drivers/snowflake-jdbc-3.6.6.jar'
-snowflake <- snowflake_connect(driver.path)
-df <- dbGetQuery(snowflake, 'SELECT * FROM us_tlog.d_user LIMIT 10;')
+conn <- snowflake_connect(driver.path)
+df <- dbGetQuery(conn, 'SELECT * FROM us_tlog.d_user LIMIT 10;')
 }

@@ -22,6 +22,6 @@ This function creates a Vertica JDBC connection object for querying InfoScout ta
 }
 \examples{
 driver.path = '/users/me/documents/drivers/vertica-jdbc-7.2.3-0.jar'
-vertica <- vertica_connect(driver.path)
-df <- dbGetQuery(vertica, 'SELECT * FROM us_tlog.d_user LIMIT 10;')
+conn <- vertica_connect(driver.path)
+df <- dbGetQuery(conn, 'SELECT * FROM us_tlog.d_user LIMIT 10;')
 }
