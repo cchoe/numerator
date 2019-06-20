@@ -385,3 +385,29 @@ recode_demos <- function(df) {
     return(df)
 }
 
+
+#' Write a dataframe to your clipboard
+#'
+#' This function writes a dataframe to your clipboard, for quick copy/paste into spreadsheets
+#' @param x A dataframe to write to clipboard
+#' @param sep Delimiter. Default="\t"
+#' @param col.names Write column names? Default=T
+#' @return A dataframe that's written to your local clipboard
+#' @examples write.clipboard(df)
+#' @export
+write.clipboard <- function(x, sep="\t", col.names=T, ...) {
+  write.table(x, file = pipe("pbcopy"), sep=sep, col.names=col.names, row.names=F, quote=F, ...)
+}
+
+#' Read a dataframe from your clipboard
+#'
+#' This function reads a dataframe from your clipboard, for quick copy/paste from spreadsheets
+#' @param x A dataframe to write to clipboard
+#' @param sep Delimiter. Default="\t"
+#' @param header Read column names? Default=T
+#' @return A dataframe from your local clipboard
+#' @examples df <- read.clipboard()
+#' @export
+read.clipboard <- function(sep="\t", header=T,...) {
+  as.data.frame(read.table(pipe("pbpaste"), sep=sep, header=header,...))
+}
