@@ -42,7 +42,7 @@ snowflake_connect <- function(driver.path=Sys.getenv("SNOWFLAKE_DRIVER_PATH"), u
     options( java.parameters = "-Xmx4g" )
     vDriver <- RJDBC::JDBC(driverClass="net.snowflake.client.jdbc.SnowflakeDriver", classPath=driver.path)
     conn = RJDBC::dbConnect(vDriver,
-                            "jdbc:snowflake://infoscout.snowflakecomputing.com/?warehouse=ISC_DW_XL&db=infoscout",
+                            "jdbc:snowflake://infoscout.snowflakecomputing.com/?warehouse=ISC_DW&db=infoscout",
                             user,
                             pw)
     return(conn)
