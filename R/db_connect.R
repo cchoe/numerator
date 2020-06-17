@@ -10,7 +10,10 @@
 #' @examples conn <- vertica_connect(driver.path)
 #' @examples df <- dbGetQuery(conn, 'SELECT * FROM us_tlog.d_user LIMIT 10;')
 #' @export
-vertica_connect <- function(driver.path=Sys.getenv("VERTICA_DRIVER_PATH"), user=Sys.getenv("VERTICA_USER"), pw=Sys.getenv("VERTICA_PW")) {
+vertica_connect <- function(driver.path=Sys.getenv("VERTICA_DRIVER_PATH"), 
+                            user=Sys.getenv("VERTICA_USER"), 
+                            pw=Sys.getenv("VERTICA_PW"),
+                            host='prd-dw-elb-vc-Y8UPG9.infoscoutinc.net') {
     # Creates a connection object to use when querying vertica
     #
     # Returns:
@@ -18,7 +21,7 @@ vertica_connect <- function(driver.path=Sys.getenv("VERTICA_DRIVER_PATH"), user=
 
     options( java.parameters = "-Xmx4g" )
     vDriver <- RJDBC::JDBC(driverClass="com.vertica.jdbc.Driver", classPath=driver.path)
-    conn = RJDBC::dbConnect(vDriver, "jdbc:vertica://stg-dw-elb-vdbc01.infoscoutinc.net:5433/InfoScout", user, pw)
+    conn = RJDBC::dbConnect(vDriver, paste0("jdbc:vertica://", host, ":5433/InfoScout"), user, pw)
     return(conn)
 }
 
