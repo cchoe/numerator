@@ -4,8 +4,14 @@
 \alias{calc_bins}
 \title{Generate bins for continous variables}
 \usage{
-calc_bins(df, metric, bin.threshold = 4, min.bins = 3, max.bins = 8,
-  bin.cutoff = 0.055)
+calc_bins(
+  df,
+  metric,
+  bin.threshold = 4,
+  min.bins = 3,
+  max.bins = 8,
+  bin.cutoff = 0.055
+)
 }
 \arguments{
 \item{df}{A dataframe containing metric values}

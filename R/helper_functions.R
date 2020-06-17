@@ -21,7 +21,7 @@ std_transform <- function(x) {
 
     # try boxcox
     lambdas <- seq(-6, 6, 0.005)
-    Box = MASS::boxcox(x+1~1, lambda = lambdas)
+    Box = MASS::boxcox(x+1~1, lambda = lambdas, plotit=F)
     Cox <- data.frame(Box$x, Box$y)
     Cox <- Cox[with(Cox, order(-Cox$Box.y)), ]
     lambda = Cox[1, "Box.x"]
@@ -161,7 +161,7 @@ calc_bins <- function(df, metric, bin.threshold=4, min.bins=3, max.bins=8, bin.c
 
     df[is.na(df)] <- 0
 
-    outlier <- CalcOutlier(df[[metric]])
+    outlier <- calc_outlier(df[[metric]])
 
     df.e<-df
 

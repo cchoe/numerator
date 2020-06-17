@@ -4,8 +4,11 @@
 \alias{snowflake_connect}
 \title{Connect to Snowflake}
 \usage{
-snowflake_connect(driver.path = Sys.getenv("SNOWFLAKE_DRIVER_PATH"),
-  user = Sys.getenv("SNOWFLAKE_USER"), pw = Sys.getenv("SNOWFLAKE_PW"))
+snowflake_connect(
+  driver.path = Sys.getenv("SNOWFLAKE_DRIVER_PATH"),
+  user = Sys.getenv("SNOWFLAKE_USER"),
+  pw = Sys.getenv("SNOWFLAKE_PW")
+)
 }
 \arguments{
 \item{driver.path}{Local path to the Snowflake JDBC driver (.jar)}

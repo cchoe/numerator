@@ -16,4 +16,4 @@ Imports:
 	e1071,
 	NbClust,
 	factoextra
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0

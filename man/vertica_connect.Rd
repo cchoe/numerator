@@ -4,8 +4,12 @@
 \alias{vertica_connect}
 \title{Connect to Vertica}
 \usage{
-vertica_connect(driver.path = Sys.getenv("VERTICA_DRIVER_PATH"),
-  user = Sys.getenv("VERTICA_USER"), pw = Sys.getenv("VERTICA_PW"))
+vertica_connect(
+  driver.path = Sys.getenv("VERTICA_DRIVER_PATH"),
+  user = Sys.getenv("VERTICA_USER"),
+  pw = Sys.getenv("VERTICA_PW"),
+  host = "prd-dw-elb-vc-Y8UPG9.infoscoutinc.net"
+)
 }
 \arguments{
 \item{driver.path}{Local path to the Vertica JDBC driver (.jar)}
