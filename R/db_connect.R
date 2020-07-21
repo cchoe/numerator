@@ -10,8 +10,8 @@
 #' @examples conn <- vertica_connect(driver.path)
 #' @examples df <- dbGetQuery(conn, 'SELECT * FROM us_tlog.d_user LIMIT 10;')
 #' @export
-vertica_connect <- function(driver.path=Sys.getenv("VERTICA_DRIVER_PATH"), 
-                            user=Sys.getenv("VERTICA_USER"), 
+vertica_connect <- function(driver.path=Sys.getenv("VERTICA_DRIVER_PATH"),
+                            user=Sys.getenv("VERTICA_USER"),
                             pw=Sys.getenv("VERTICA_PW"),
                             host='prd-dw-elb-vc-Y8UPG9.infoscoutinc.net') {
     # Creates a connection object to use when querying vertica
@@ -31,12 +31,16 @@ vertica_connect <- function(driver.path=Sys.getenv("VERTICA_DRIVER_PATH"),
 #' @param driver.path Local path to the Snowflake JDBC driver (.jar)
 #' @param user Database username
 #' @param pw Database password
+#' @param authenticator snowflake authenticator. Defaults to 'snowflake', externalbrowser can be used.
 #' @return A Snowflake connection object
 #' @examples driver.path = '/users/me/documents/drivers/snowflake-jdbc-3.6.6.jar'
 #' @examples conn <- snowflake_connect(driver.path)
 #' @examples df <- dbGetQuery(conn, 'SELECT * FROM us_tlog.d_user LIMIT 10;')
 #' @export
-snowflake_connect <- function(driver.path=Sys.getenv("SNOWFLAKE_DRIVER_PATH"), user=Sys.getenv("SNOWFLAKE_USER"), pw=Sys.getenv("SNOWFLAKE_PW")) {
+snowflake_connect <- function(driver.path=Sys.getenv("SNOWFLAKE_DRIVER_PATH"),
+                              user=Sys.getenv("SNOWFLAKE_USER"),
+                              pw=Sys.getenv("SNOWFLAKE_PW"),
+                              authenticator='snowflake') {
     # Creates a connection object to use when querying vertica
     #
     # Returns:
@@ -45,7 +49,9 @@ snowflake_connect <- function(driver.path=Sys.getenv("SNOWFLAKE_DRIVER_PATH"), u
     options( java.parameters = "-Xmx4g" )
     vDriver <- RJDBC::JDBC(driverClass="net.snowflake.client.jdbc.SnowflakeDriver", classPath=driver.path)
     conn = RJDBC::dbConnect(vDriver,
-                            "jdbc:snowflake://infoscout.snowflakecomputing.com/?warehouse=ISC_DW&db=infoscout",
+                            paste0("jdbc:snowflake://infoscout.snowflakecomputing.com/?warehouse=ISC_DW&db=infoscout&authenticator=",
+                                   authenticator),
+
                             user,
                             pw)
     return(conn)
