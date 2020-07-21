@@ -7,7 +7,8 @@
 snowflake_connect(
   driver.path = Sys.getenv("SNOWFLAKE_DRIVER_PATH"),
   user = Sys.getenv("SNOWFLAKE_USER"),
-  pw = Sys.getenv("SNOWFLAKE_PW")
+  pw = Sys.getenv("SNOWFLAKE_PW"),
+  authenticator = "snowflake"
 )
 }
 \arguments{
@@ -16,6 +17,8 @@ snowflake_connect(
 \item{user}{Database username}
 
 \item{pw}{Database password}
+
+\item{authenticator}{snowflake authenticator. Defaults to 'snowflake', externalbrowser can be used.}
 }
 \value{
 A Snowflake connection object
